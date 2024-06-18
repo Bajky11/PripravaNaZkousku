@@ -32,6 +32,32 @@ namespace PripravaNaZkousku
             //DrawGraphicsPath(g);
             //DrawImageNegative(img, g);
             //DrawImageWithClip(g);
+            DrawWithHatchBrush(g);
+        }
+
+        void DrawWithHatchBrush(Graphics g)
+        {
+            // Normální hatch
+            g.FillRectangle(
+                new HatchBrush(HatchStyle.Horizontal, Color.Purple, Color.Transparent),
+                new Rectangle(200, 200, 100, 100)
+                );
+
+            // Hatch po úhlem
+            int size = 100;
+            Bitmap bitmap = new Bitmap(size, size);
+            using (Graphics tempGraphics = Graphics.FromImage(bitmap))
+            {
+                HatchBrush hatchBrush = new HatchBrush(HatchStyle.Horizontal, Color.Purple, Color.Transparent);
+                tempGraphics.FillRectangle(hatchBrush, new Rectangle(0, 0, size, size));
+            }
+
+            TextureBrush textureBrush = new TextureBrush(bitmap);
+
+            textureBrush.RotateTransform(45);
+            g.FillRectangle(textureBrush, new Rectangle(50, 200, size, size));
+
+
         }
 
         void DrawGraphicsPath(Graphics g)

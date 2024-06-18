@@ -33,6 +33,7 @@ namespace PripravaNaZkousku
             //DrawImageNegative(img, g);
             //DrawImageWithClip(g);
             DrawWithHatchBrush(g);
+            DrawWithTextureBrush(g);
         }
 
         void DrawWithHatchBrush(Graphics g)
@@ -58,6 +59,14 @@ namespace PripravaNaZkousku
             g.FillRectangle(textureBrush, new Rectangle(50, 200, size, size));
 
 
+        }
+
+        void DrawWithTextureBrush(Graphics g)
+        {
+            Bitmap bitmap = new Bitmap("bee.png");
+            TextureBrush textureBrush = new TextureBrush(bitmap);
+            //textureBrush.RotateTransform(45);
+            g.FillRectangle(textureBrush,50,50,200,200);
         }
 
         void DrawGraphicsPath(Graphics g)
